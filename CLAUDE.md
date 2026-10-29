@@ -15,9 +15,9 @@ The checks, read-only (report results, never change anything):
 
 1. **Page:** https://www.yellowfrostedwillow.com loads over HTTPS with the title
    "Yellow Frosted Willow", the willow hero image, the "In concert" box (Nov 23, 2026 at
-   Don't Tell Mama) with its "Get tickets" link, and the "About", "Concert cast", "Hear a sneak peek"
-   and "Songs" sections. ("Hear a sneak
-   peek" uses an embedded player, so it can look empty in fetched HTML; that's fine.)
+   Don't Tell Mama) with its "Get tickets" link, and the "About", "Concert cast" and
+   "Hear a sneak peek" sections. ("Hear a sneak peek" uses an embedded player, so it can look
+   empty in fetched HTML; that's fine.)
 2. **Images and links:** run the site-check Python script stored in the "Daily website smoke
    test" scheduled task's prompt (read it with the `list_triggers` / `get_trigger` tools), saved
    to the scratchpad exactly as written and run with `python3 -I`. It checks all of Stewart's

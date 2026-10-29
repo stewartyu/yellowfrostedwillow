@@ -281,46 +281,6 @@ header {
     }
 }
 
-/* SONGS */
-.songs {
-    counter-reset: song;
-
-    text-align: left;
-
-    li {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 0 1em;
-
-        padding: .55em 0;
-        border-bottom: 1px solid rgba(184, 134, 43, .25);
-
-        counter-increment: song;
-    }
-}
-
-.songs__title {
-    font-family: 'Playfair Display', Georgia, serif;
-
-    &:before {
-        content: counter(song) '.';
-
-        display: inline-block;
-        width: 2em;
-
-        color: $gold-dark;
-        font-family: 'Source Sans 3', Helvetica, Arial, sans-serif;
-        font-size: .85em;
-    }
-}
-
-.songs__singers {
-    color: rgba(59, 42, 30, .7);
-    font-size: .8em;
-}
-
 .soundcloud {
     display: block;
 }
