@@ -1,5 +1,10 @@
 # Notes for Claude
 
+## Changes go through a pull request
+
+Never push directly to `master`: every merge deploys the live site. Make changes on a branch,
+open a pull request, and let Stewart review and merge it.
+
 ## After a PR merges: run the content smoke checks
 
 Every merge to `master` deploys the live site (`.github/workflows/deploy.yml`, GitHub Pages).
