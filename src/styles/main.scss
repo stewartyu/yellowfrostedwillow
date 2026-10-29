@@ -337,22 +337,10 @@ header {
 .cast {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
-    gap: 1.2em 1em;
+    gap: .8em 1em;
 
-    li {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-.cast__name {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.05em;
-}
-
-.cast__role {
-    color: rgba(59, 42, 30, .7);
-    font-size: .8em;
 }
 
 /*****************************************************************************/

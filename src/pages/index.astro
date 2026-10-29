@@ -16,17 +16,15 @@ const songs = [
   { title: 'Home', singers: 'Anna May' },
 ];
 
-// Anna May is split across three singers for the concert, one per stage of her life.
 const cast = [
-  { role: 'Anna May Wong, Mary', name: 'Noi Maeshige' },
-  { role: 'Anna May Wong', name: 'Kai An Chee' },
-  { role: 'Anna May Wong', name: 'Marina Kondo' },
-  { role: 'Sam', name: 'Charles Romaine' },
-  { role: 'Gon Toy', name: 'Xiaoqing Zhang' },
-  { role: 'James, Johnny', name: 'James Wong' },
-  { role: 'Sessue, Charles', name: 'Sam Tanabe' },
-  { role: 'Wai Ming', name: 'Stewart Yu' },
-  { role: 'Eric', name: 'Bart Mather' },
+  'Noi Maeshige',
+  'Kai An Chee',
+  'Marina Kondo',
+  'Charles Romaine',
+  'Xiaoqing Zhang',
+  'James Wong',
+  'Sam Tanabe',
+  'Bart Mather',
 ];
 
 const ticketsUrl = 'https://shows.donttellmamanyc.com/show/yellow-frosted-willow-a-new-musical-in-concert/';
@@ -78,12 +76,7 @@ const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tel
 
   <ul class="cast">
     {
-      cast.map((member) => (
-        <li>
-          <span class="cast__name">{member.name}</span>
-          <span class="cast__role">{member.role}</span>
-        </li>
-      ))
+      cast.map((name) => <li>{name}</li>)
     }
   </ul>
   <p class="caption">Music director and piano: Minhui Lee</p>
