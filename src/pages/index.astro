@@ -16,6 +16,20 @@ const songs = [
   { title: 'Home', singers: 'Anna May' },
 ];
 
+// Anna May is split across three singers for the concert, one per stage of her life.
+const cast = [
+  { role: 'Anna May Wong, Mary', name: 'Noi Maeshige' },
+  { role: 'Anna May Wong', name: 'Kai An Chee' },
+  { role: 'Anna May Wong', name: 'Marina Kondo' },
+  { role: 'Sam', name: 'Charles Romaine' },
+  { role: 'Gon Toy', name: 'Xiaoqing Zhang' },
+  { role: 'James, Johnny', name: 'James Wong' },
+  { role: 'Sessue, Charles', name: 'Sam Tanabe' },
+  { role: 'Wai Ming', name: 'Stewart Yu' },
+  { role: 'Eric', name: 'Bart Mather' },
+];
+
+const ticketsUrl = 'https://shows.donttellmamanyc.com/show/yellow-frosted-willow-a-new-musical-in-concert/';
 const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tell+Mama+343+W+46th+St+New+York+NY';
 ---
 
@@ -31,6 +45,7 @@ const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tel
       The first concert of songs from the show, with music direction by Minhui Lee.<br />
       Doors open at 6:15pm. Two-drink minimum at the venue.
     </p>
+    <p><a href={ticketsUrl} class="button">Get tickets</a></p>
   </section>
 
   <hr />
@@ -44,8 +59,8 @@ const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tel
   </p>
   <p>
     Pigeonholed as the deceitful “dragon lady” or the naive “butterfly,” Anna May struggles to land leading roles in
-    America, while being shamed by the Chinese community for portraying their culture in a negative light. <em>Yellow Frosted Willow</em>
-    follows a talented, ambitious actress in her search for acceptance from the film industry, the American public, and her own Chinese heritage.
+    America, while being shamed by the Chinese community for portraying their culture in a negative light. <em>Yellow Frosted Willow</em> follows
+    a talented, ambitious actress in her search for acceptance from the film industry, the American public, and her own Chinese heritage.
   </p>
 
   <div class="columns center">
@@ -56,6 +71,22 @@ const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tel
       <li>Music &amp; Lyrics: Stewart Yu</li>
     </ul>
   </div>
+
+  <hr />
+
+  <h3>Concert cast</h3>
+
+  <ul class="cast">
+    {
+      cast.map((member) => (
+        <li>
+          <span class="cast__name">{member.name}</span>
+          <span class="cast__role">{member.role}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="caption">Music director and piano: Minhui Lee</p>
 
   <hr />
 
