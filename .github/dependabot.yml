@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # One PR for all minor/patch bumps; majors still get their own.
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # @astrojs/check only supports TypeScript 5 and 6; drop this once it supports 7.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

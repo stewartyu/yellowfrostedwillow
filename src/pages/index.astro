@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const songs = [
+  { title: 'Yellow Frosted Willow', singers: 'Anna May' },
+  { title: 'Anything I Dream', singers: 'Anna May' },
+  { title: 'The American Dream', singers: 'Sam, Gon Toy, Anna May, James' },
+  { title: "The Camera Won't Even Look At Me", singers: 'Anna May' },
+  { title: 'Always Stand Strong', singers: 'Gon Toy' },
+  { title: 'The Apple Tree', singers: 'Sam' },
+  { title: 'Lovely As You', singers: 'Wai Ming, Johnny, Charles, Anna May' },
+  { title: 'If Only I Could Be Yours', singers: 'Eric' },
+  { title: 'Remember I Am There', singers: 'Eric, Anna May' },
+  { title: 'Putting On A Face', singers: 'Anna May' },
+  { title: 'Times Are A-Changing', singers: 'Sessue, Anna May, Mary' },
+  { title: 'Home', singers: 'Anna May' },
+];
+
+const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tell+Mama+343+W+46th+St+New+York+NY';
+---
+
+<Layout title="Yellow Frosted Willow" template="home">
+  <section class="concert" aria-labelledby="concert">
+    <p class="concert__eyebrow">In concert · One night only</p>
+    <h2 id="concert">Monday, November 23, 2026 · 7pm</h2>
+    <p>
+      <strong>Don't Tell Mama</strong> (Brick Room)<br />
+      <a href={venueMapUrl}>343 W. 46th Street</a>, New York, NY
+    </p>
+    <p class="concert__details">
+      The first concert of songs from the show, with music direction by Minhui Lee.<br />
+      Doors open at 6:15pm. Two-drink minimum at the venue.
+    </p>
+  </section>
+
+  <hr />
+
+  <h3>About</h3>
+
+  <p>
+    Born in Los Angeles as Hollywood was taking shape, Anna May Wong falls in love with the movies, saving her lunch
+    money to see films at the nickelodeon after school. Against her father's wishes, she leaves the family laundry to
+    become an actress, only to run into the hard reality of race in casting.
+  </p>
+  <p>
+    Pigeonholed as the deceitful “dragon lady” or the naive “butterfly,” Anna May struggles to land leading roles in
+    America, while being shamed by the Chinese community for portraying their culture in a negative light. <em>Yellow Frosted Willow</em>
+    follows a talented, ambitious actress in her search for acceptance from the film industry, the American public, and her own Chinese heritage.
+  </p>
+
+  <div class="columns center">
+    <ul class="columns_column">
+      <li>Book: Angela Wong</li>
+    </ul>
+    <ul class="columns_column">
+      <li>Music &amp; Lyrics: Stewart Yu</li>
+    </ul>
+  </div>
+
+  <hr />
+
+  <h3>Hear a sneak peek</h3>
+
+  <iframe
+    class="soundcloud"
+    width="100%"
+    height="166"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay"
+    title="Anything I Dream — Yellow Frosted Willow on SoundCloud"
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2417982585&auto_play=false&hide_related=true&show_comments=false&show_reposts=false&visual=false&color=%23b8862b"
+  ></iframe>
+  <p class="caption">“Anything I Dream” — composer demo</p>
+
+  <hr />
+
+  <h3>Songs</h3>
+
+  <ol class="songs">
+    {
+      songs.map((song) => (
+        <li>
+          <span class="songs__title">{song.title}</span>
+          <span class="songs__singers">{song.singers}</span>
+        </li>
+      ))
+    }
+  </ol>
+</Layout>

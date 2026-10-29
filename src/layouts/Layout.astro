@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/hero.jpg';
+import '../styles/main.scss';
+
+interface Props {
+  title: string;
+  template?: string;
+}
+
+const { title, template } = Astro.props;
+const description =
+  "Yellow Frosted Willow — a new musical about Anna May Wong, Hollywood's first Chinese-American movie star.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(hero.src, Astro.site)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class={template}>
+    <header>
+      <a href="/" class="wordmark">Yellow Frosted Willow</a>
+    </header>
+
+    <div class="hero">
+      <Image
+        class="hero__image"
+        src={hero}
+        alt="Silhouette of a woman in a gown beside a willow tree at sunset"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero__text">
+        <h1 class="hero__title">Yellow Frosted Willow</h1>
+        <p class="hero__tagline">A new musical about Anna May Wong</p>
+      </div>
+    </div>
+
+    <div class="site">
+      <slot />
+    </div>
+
+    <footer>
+      © {new Date().getFullYear()} Stewart Yu &amp; Angela Wong · <a href="https://www.stewartyu.com">stewartyu.com</a>
+    </footer>
+  </body>
+</html>
