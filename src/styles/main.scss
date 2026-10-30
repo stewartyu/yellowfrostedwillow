@@ -164,9 +164,15 @@ img {
     }
 }
 
-.title__han {
-    margin-top: 4px;
+.title__name {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6px;
 
+    margin-top: 4px;
+}
+
+.title__han {
     color: $red;
     font-family: $han;
     font-weight: 600;
@@ -183,18 +189,18 @@ img {
     color: $muted;
 }
 
-.title__gloss {
-    max-width: 30em;
-    margin-top: 14px;
+/* Spread one syllable beside each character, like a pronunciation guide. */
+.title__romanization {
+    display: flex;
+    justify-content: space-around;
 
     color: $muted;
-    font-size: 14.5px;
-    line-height: 1.5;
+    font-family: $sans;
+    font-size: 10px;
+    letter-spacing: .32em;
+    text-transform: uppercase;
 
-    span {
-        color: $ink;
-        font-family: $han;
-    }
+    writing-mode: vertical-rl;
 }
 
 @media (min-width: $wide) {
@@ -226,6 +232,10 @@ img {
 
     .title__han {
         font-size: 72px;
+    }
+
+    .title__romanization {
+        font-size: 12px;
     }
 }
 
