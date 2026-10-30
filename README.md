@@ -1,4 +1,4 @@
-# Yellow Frosted Willow
+# Yellow Frosted Willow: The Anna May Wong Musical
 
 Source for [www.yellowfrostedwillow.com](https://www.yellowfrostedwillow.com), built with [Astro](https://astro.build).
 
