@@ -46,12 +46,14 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
     <div class="hero__text">
       <div class="title">
         <h1 class="title__en">Yellow<br />Frosted<br /><span>Willow</span></h1>
-        <div class="title__han" lang="zh-Hant" aria-hidden="true">黃柳霜</div>
+        <!-- Her Chinese name, with its pronunciation beside it; sitting next to the English
+             title is what tells readers the two are the same name. -->
+        <p class="title__name">
+          <span class="title__han" lang="zh-Hant">黃柳霜</span>
+          <span class="title__romanization"><span>Wong</span> <span>Liu</span> <span>Tsong</span></span>
+        </p>
       </div>
       <p class="label title__tagline">The Anna May Wong Musical</p>
-      <p class="title__gloss">
-        <span lang="zh-Hant">黃柳霜</span> (Wong Liu Tsong) was Anna May Wong's Chinese name, meaning “yellow frosted willow.”
-      </p>
     </div>
   </div>
 
