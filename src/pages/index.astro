@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import portrait from '../assets/anna-may-wong-1924.jpg';
 
 // Alphabetical by last name, so the list doesn't rank anyone.
 const cast = [
@@ -15,71 +17,99 @@ const cast = [
 
 const ticketsUrl = 'https://shows.donttellmamanyc.com/show/yellow-frosted-willow-a-new-musical-in-concert/';
 const venueMapUrl = 'https://www.google.com/maps/search/?api=1&query=Don%27t+Tell+Mama+343+W+46th+St+New+York+NY';
+// Public domain in the US (published 1924); credited anyway.
+const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong_1924.jpg';
 ---
 
-<Layout title="Yellow Frosted Willow: The Anna May Wong Musical" template="home">
-  <section class="concert" aria-labelledby="concert">
-    <p class="concert__eyebrow">In concert · One night only</p>
-    <h2 id="concert">Monday, November 23, 2026 · 7pm</h2>
-    <p>
-      <strong>Don't Tell Mama</strong> (Brick Room)<br />
-      <a href={venueMapUrl}>343 W. 46th Street</a>, New York, NY
-    </p>
-    <p class="concert__details">
-      The first concert of songs from the show, with music direction by Minhui Lee.<br />
-      Doors open at 6:15pm. Two-drink minimum at the venue.
-    </p>
-    <p><a href={ticketsUrl} class="button">Get tickets</a></p>
-  </section>
+<Layout title="Yellow Frosted Willow: The Anna May Wong Musical">
+  <header class="topbar label">
+    <span>In concert</span>
+    <span>Nov 23 · NYC</span>
+  </header>
 
-  <hr />
+  <div class="hero">
+    <figure class="print">
+      <Image
+        class="print__photo"
+        src={portrait}
+        alt="Anna May Wong in 1924, wearing a satin turban, her hands raised beside her face"
+        widths={[400, 700, 1000]}
+        sizes="(min-width: 860px) 420px, calc(100vw - 64px)"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <figcaption class="print__caption">
+        Anna May Wong, 1924. Photograph by <a href={portraitSourceUrl}>Edwin Bower Hesser</a>.
+      </figcaption>
+    </figure>
 
-  <h3>About</h3>
-
-  <p>
-    Born in Los Angeles as Hollywood was taking shape, Anna May Wong falls in love with the movies, saving her lunch
-    money to see films at the nickelodeon after school. Against her father's wishes, she leaves the family laundry to
-    become an actress, only to run into the hard reality of race in casting.
-  </p>
-  <p>
-    Pigeonholed as the deceitful “dragon lady” or the naive “butterfly,” Anna May struggles to land leading roles in
-    America, while being shamed by the Chinese community for portraying their culture in a negative light. <em>Yellow Frosted Willow</em> follows
-    a talented, ambitious actress in her search for acceptance from the film industry, the American public, and her own Chinese heritage.
-  </p>
-
-  <div class="columns center">
-    <ul class="columns_column">
-      <li>Book: Angela Wong</li>
-    </ul>
-    <ul class="columns_column">
-      <li>Music &amp; Lyrics: Stewart Yu</li>
-    </ul>
+    <div class="hero__text">
+      <div class="title">
+        <h1 class="title__en">Yellow<br />Frosted<br /><span>Willow</span></h1>
+        <div class="title__han" lang="zh-Hant" aria-hidden="true">黃柳霜</div>
+      </div>
+      <p class="label title__tagline">The Anna May Wong Musical</p>
+      <p class="title__gloss">
+        <span lang="zh-Hant">黃柳霜</span> (Wong Liu Tsong) was Anna May Wong's Chinese name. It means “yellow frosted willow.”
+      </p>
+    </div>
   </div>
 
-  <hr />
+  <main class="content">
+    <section class="section" aria-labelledby="concert">
+      <h2 id="concert" class="label label--accent">In concert · One night only</h2>
+      <p class="date">Nov. 23<br />7pm</p>
+      <div class="venue">
+        <p class="muted">
+          Don't Tell Mama<br />
+          Brick Room, <a href={venueMapUrl}>343 W. 46th St</a>
+        </p>
+        <a class="button" href={ticketsUrl}>Get tickets</a>
+      </div>
+      <p class="muted small">
+        Monday, November 23, 2026. The first concert of songs from the show, with music direction by Minhui Lee.
+        Doors 6:15pm.
+      </p>
+    </section>
 
-  <h3>Concert cast</h3>
+    <section class="section" aria-labelledby="story">
+      <h2 id="story" class="label label--accent">The story</h2>
+      <p>
+        Born in Los Angeles as Hollywood was taking shape, Anna May Wong falls in love with the movies, saving her
+        lunch money for the nickelodeon. Against her father's wishes, she leaves the family laundry to become an
+        actress, and runs straight into the hard reality of race in casting.
+      </p>
+      <p>
+        Pigeonholed as the “dragon lady” or the “butterfly,” and shamed at home for how she portrays her culture, she
+        searches for acceptance from Hollywood, the American public, and her own heritage.
+      </p>
+      <p class="credits">
+        Book <b>Angela Wong</b> <span aria-hidden="true">·</span> Music &amp; Lyrics <b>Stewart Yu</b>
+      </p>
+    </section>
 
-  <ul class="cast">
-    {
-      cast.map((name) => <li>{name}</li>)
-    }
-  </ul>
-  <p class="caption">Music director and piano: Minhui Lee</p>
+    <section class="section" aria-labelledby="voices">
+      <h2 id="voices" class="label label--accent">The voices</h2>
+      <ul class="cast">
+        {cast.map((name) => <li>{name}</li>)}
+      </ul>
+      <p class="muted small">Music director and piano: Minhui Lee</p>
+    </section>
 
-  <hr />
-
-  <h3>Hear a sneak peek</h3>
-
-  <iframe
-    class="soundcloud"
-    width="100%"
-    height="166"
-    scrolling="no"
-    frameborder="no"
-    allow="autoplay"
-    title="Anything I Dream — Yellow Frosted Willow on SoundCloud"
-    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2417982585&auto_play=false&hide_related=true&show_comments=false&show_reposts=false&visual=false&color=%23b8862b"
-  ></iframe>
-  <p class="caption">“Anything I Dream” — composer demo</p>
+    <section class="section" aria-labelledby="listen">
+      <h2 id="listen" class="label label--accent">Listen</h2>
+      <p class="song">“Anything I Dream”</p>
+      <iframe
+        class="soundcloud"
+        width="100%"
+        height="120"
+        scrolling="no"
+        frameborder="no"
+        allow="autoplay"
+        title="Anything I Dream — Yellow Frosted Willow on SoundCloud"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2417982585&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false&color=%23a8192a"
+      ></iframe>
+      <p class="muted small">Composer demo</p>
+    </section>
+  </main>
 </Layout>
