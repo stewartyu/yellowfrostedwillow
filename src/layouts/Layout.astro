@@ -1,16 +1,18 @@
 ---
-import { Image } from 'astro:assets';
-import hero from '../assets/hero.jpg';
+import { getImage } from 'astro:assets';
+import portrait from '../assets/anna-may-wong-1924.jpg';
 import '../styles/main.scss';
 
 interface Props {
   title: string;
-  template?: string;
 }
 
-const { title, template } = Astro.props;
+const { title } = Astro.props;
 const description =
   "Yellow Frosted Willow: The Anna May Wong Musical, about Hollywood's first Chinese-American movie star.";
+
+// Link previews get a modest JPEG rather than the full-size original.
+const ogImage = await getImage({ src: portrait, width: 1200, format: 'jpg' });
 ---
 
 <!doctype html>
@@ -23,41 +25,22 @@ const description =
     <link rel="canonical" href={Astro.url} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(hero.src, Astro.site)} />
+    <meta property="og:image" content={new URL(ogImage.src, Astro.site)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Work+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Only the three characters of her name, so the CJK font stays tiny. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600&text=%E9%BB%83%E6%9F%B3%E9%9C%9C&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class={template}>
-    <header>
-      <a href="/" class="wordmark">Yellow Frosted Willow</a>
-    </header>
+  <body>
+    <slot />
 
-    <div class="hero">
-      <Image
-        class="hero__image"
-        src={hero}
-        alt="Silhouette of a woman in a gown beside a willow tree at sunset"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="hero__text">
-        <h1 class="hero__title">Yellow Frosted Willow</h1>
-        <p class="hero__tagline">The Anna May Wong Musical</p>
-      </div>
-    </div>
-
-    <div class="site">
-      <slot />
-    </div>
-
-    <footer>
-      © {new Date().getFullYear()} Yellow Frosted Willow
-    </footer>
+    <footer class="footer label">© {new Date().getFullYear()} Yellow Frosted Willow</footer>
   </body>
 </html>
