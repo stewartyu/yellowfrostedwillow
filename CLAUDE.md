@@ -25,8 +25,9 @@ The checks, read-only (report results, never change anything):
    embedded player, so it can look empty in fetched HTML; that's fine.)
 2. **Images and links:** run the site-check Python script stored in the "Daily website smoke
    test" scheduled task's prompt (read it with the `list_triggers` / `get_trigger` tools), saved
-   to the scratchpad exactly as written and run with `python3 -I`. It checks all of Stewart's
-   sites; report this site's results and mention anything broken on the others.
+   to the scratchpad and run with `python3 -I`. The script covers all four of Stewart's sites
+   for the daily test; in the saved copy, remove every `SITES` entry except
+   `"www.yellowfrostedwillow.com"` so it checks only this site, and change nothing else.
    Facebook/X and 401/403/429 responses are "couldn't verify", not broken.
 3. **The change itself works as intended.** From the merged PR's description and diff, list
    what should now be true on the live site, then check each one and report pass/fail per item:
