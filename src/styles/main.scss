@@ -294,11 +294,34 @@ img {
     }
 }
 
-.venue {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 12px;
+.details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 6px 16px;
+
+    margin: 18px 0 0;
+
+    dt {
+        color: $muted;
+        font-family: $sans;
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+    }
+
+    dd {
+        margin: 0;
+
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+
+.details__button {
+    display: inline-block;
+    margin-top: 22px;
 }
 
 .button {
@@ -385,4 +408,8 @@ img {
 
 .cast--single {
     display: block;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
