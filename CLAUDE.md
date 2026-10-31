@@ -20,8 +20,8 @@ The checks, read-only (report results, never change anything):
 
 1. **Page:** https://www.yellowfrostedwillow.com loads over HTTPS with the title
    "Yellow Frosted Willow: The Anna May Wong Musical", the 1924 photo of Anna May Wong, the
-   黃柳霜 name beside the title, the "In concert" section (Nov. 23 at Don't Tell Mama) with its
-   "Get tickets" link, and "The story", "The voices" and "Listen" sections. ("Listen" uses an
+   黃柳霜 name beside the title, the "In concert" section (Nov. 23 at Don't Tell Mama, with the Don't Tell Mama logo) with its
+   "Get tickets" link, and "The story", "Featuring" and "Listen" sections. ("Listen" uses an
    embedded player, so it can look empty in fetched HTML; that's fine.)
 2. **Images and links:** run the site-check Python script stored in the "Daily website smoke
    test" scheduled task's prompt (read it with the `list_triggers` / `get_trigger` tools), saved
