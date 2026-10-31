@@ -67,20 +67,20 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
     <section class="section" aria-labelledby="concert">
       <h2 id="concert" class="label label--accent">In concert · One night only</h2>
       <div class="date-row">
-        <p class="date">Nov. 23<br />7pm</p>
+        <p class="date">Mon, Nov. 23<br />7pm</p>
         <Image class="venue-logo" src={venueLogo} alt="Don't Tell Mama" width={124} />
       </div>
-      <div class="venue">
-        <p class="muted">
-          Don't Tell Mama<br />
-          Brick Room, <a href={venueMapUrl}>343 W. 46th St</a>
-        </p>
-        <a class="button" href={ticketsUrl}>Get tickets</a>
-      </div>
-      <p class="muted small">
-        Monday, November 23, 2026. The first concert of songs from the show, with music direction by Minhui Lee.
-        Doors 6:15pm. $25 cover plus a $20 minimum (must include 2 drinks), cash only.
-      </p>
+      <!-- One labelled line per fact, matching the postcard and poster. -->
+      <dl class="details">
+        <dt>Where</dt>
+        <dd>Don't Tell Mama, Brick Room<br /><a href={venueMapUrl}>343 W. 46th St</a></dd>
+        <dt>Doors</dt>
+        <dd>6:15pm</dd>
+        <dt>Cover</dt>
+        <dd>$25 + $20 minimum (2 drinks), <span class="nowrap">cash only</span></dd>
+      </dl>
+      <a class="button details__button" href={ticketsUrl}>Get tickets</a>
+      <p class="muted small">Monday, November 23, 2026. The first concert of songs from the show.</p>
     </section>
 
     <section class="section" aria-labelledby="story">
