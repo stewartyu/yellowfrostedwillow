@@ -98,7 +98,8 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
 
     <section class="section" aria-labelledby="featuring">
       <h2 id="featuring" class="label label--accent">Featuring</h2>
-      <p class="credits">Music director &amp; piano <b>Minhui Lee</b></p>
+      <!-- Same size and face as the cast names, so the music director doesn't read as secondary. -->
+      <p class="cast-lead"><span class="cast-lead__role">Music director &amp; piano</span> Minhui Lee</p>
       <ul class="cast">
         {cast.map((name) => <li>{name}</li>)}
       </ul>
