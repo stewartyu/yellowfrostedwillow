@@ -255,7 +255,6 @@ img {
 
 .section {
     padding: 36px 22px;
-    border-top: 1px solid $rule;
 
     > p:first-of-type {
         margin-top: 12px;
@@ -334,33 +333,13 @@ img {
     }
 }
 
-.cast-lead {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0 12px;
-
-    padding: 6px 0;
-    border-bottom: 1px solid $rule;
-
-    font-family: $display;
-    font-size: 24px;
-}
-
-.cast-lead__role {
-    color: $muted;
-    font-family: $sans;
-    font-size: 13px;
-}
-
 .cast {
-    margin-top: 0;
+    margin-top: 12px;
 
     list-style: none;
 
     li {
         padding: 6px 0;
-        border-bottom: 1px solid $rule;
 
         font-family: $display;
         font-size: 24px;
@@ -395,7 +374,15 @@ img {
     max-width: 40rem;
     margin: 0 auto;
     padding: 28px 22px 44px;
-    border-top: 1px solid $rule;
 
     color: $muted;
+}
+
+/* "Music director & pianist" follows straight on from Featuring, so it sits closer. */
+.section.section--tight {
+    padding-top: 8px;
+}
+
+.cast--single {
+    display: block;
 }
