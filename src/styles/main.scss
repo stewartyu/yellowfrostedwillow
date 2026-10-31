@@ -189,6 +189,10 @@ img {
     color: $muted;
 }
 
+.title__credits {
+    margin-top: 10px;
+}
+
 /* Spread one syllable beside each character, like a pronunciation guide. */
 .title__romanization {
     display: flex;
@@ -266,8 +270,29 @@ img {
     line-height: 1;
 }
 
-.section > .date {
-    margin-top: 10px;
+.date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+    margin: 10px 0;
+
+    .date {
+        margin: 0;
+    }
+}
+
+.venue-logo {
+    flex: none;
+    width: 108px;
+    height: auto;
+}
+
+@media (min-width: $wide) {
+    .venue-logo {
+        width: 124px;
+    }
 }
 
 .venue {

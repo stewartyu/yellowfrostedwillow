@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import portrait from '../assets/anna-may-wong-1924.jpg';
+// The venue asks for its logo on all marketing materials. Their file is white for dark
+// backgrounds; this is the same artwork in our ink colour with a transparent background.
+import venueLogo from '../assets/dont-tell-mama-logo.png';
 
 // Alphabetical by last name, so the list doesn't rank anyone.
 const cast = [
@@ -54,13 +57,19 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
         </p>
       </div>
       <p class="label title__tagline">The Anna May Wong Musical</p>
+      <p class="credits title__credits">
+        Book <b>Angela Wong</b> <span aria-hidden="true">·</span> Music &amp; Lyrics <b>Stewart Yu</b>
+      </p>
     </div>
   </div>
 
   <main class="content">
     <section class="section" aria-labelledby="concert">
       <h2 id="concert" class="label label--accent">In concert · One night only</h2>
-      <p class="date">Nov. 23<br />7pm</p>
+      <div class="date-row">
+        <p class="date">Nov. 23<br />7pm</p>
+        <Image class="venue-logo" src={venueLogo} alt="Don't Tell Mama" width={124} />
+      </div>
       <div class="venue">
         <p class="muted">
           Don't Tell Mama<br />
@@ -70,7 +79,7 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
       </div>
       <p class="muted small">
         Monday, November 23, 2026. The first concert of songs from the show, with music direction by Minhui Lee.
-        Doors 6:15pm.
+        Doors 6:15pm. $25 cover plus a $20 minimum (must include 2 drinks), cash only.
       </p>
     </section>
 
@@ -85,17 +94,14 @@ const portraitSourceUrl = 'https://commons.wikimedia.org/wiki/File:Anna_May_Wong
         Pigeonholed as the “dragon lady” or the “butterfly,” and shamed at home for how she portrays her culture, she
         searches for acceptance from Hollywood, the American public, and her own heritage.
       </p>
-      <p class="credits">
-        Book <b>Angela Wong</b> <span aria-hidden="true">·</span> Music &amp; Lyrics <b>Stewart Yu</b>
-      </p>
     </section>
 
-    <section class="section" aria-labelledby="voices">
-      <h2 id="voices" class="label label--accent">The voices</h2>
+    <section class="section" aria-labelledby="featuring">
+      <h2 id="featuring" class="label label--accent">Featuring</h2>
+      <p class="credits">Music director &amp; piano <b>Minhui Lee</b></p>
       <ul class="cast">
         {cast.map((name) => <li>{name}</li>)}
       </ul>
-      <p class="muted small">Music director and piano: Minhui Lee</p>
     </section>
 
     <section class="section" aria-labelledby="listen">
