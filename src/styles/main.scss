@@ -334,8 +334,27 @@ img {
     }
 }
 
+.cast-lead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 12px;
+
+    padding: 6px 0;
+    border-bottom: 1px solid $rule;
+
+    font-family: $display;
+    font-size: 24px;
+}
+
+.cast-lead__role {
+    color: $muted;
+    font-family: $sans;
+    font-size: 13px;
+}
+
 .cast {
-    margin-top: 12px;
+    margin-top: 0;
 
     list-style: none;
 
