@@ -394,11 +394,29 @@ img {
 /*
 /*****************************************************************************/
 .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px 24px;
+
     max-width: 40rem;
     margin: 0 auto;
     padding: 28px 22px 44px;
 
     color: $muted;
+}
+
+.footer__social {
+    text-decoration: none;
+}
+
+/* Handles are lowercase, so keep it as people would type it. */
+.footer__handle {
+    color: $red;
+    letter-spacing: .04em;
+    text-transform: none;
+    font-size: 13px;
 }
 
 /* "Music director & pianist" follows straight on from Featuring, so it sits closer. */
