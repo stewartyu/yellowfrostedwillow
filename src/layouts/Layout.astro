@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const instagramUrl = 'https://www.instagram.com/yellowfrostedwillow/';
 const description =
   "Yellow Frosted Willow: The Anna May Wong Musical, about Hollywood's first Chinese-American movie star.";
 
@@ -41,6 +42,11 @@ const ogImage = await getImage({ src: portrait, width: 1200, format: 'jpg' });
   <body>
     <slot />
 
-    <footer class="footer label">© {new Date().getFullYear()} Yellow Frosted Willow</footer>
+    <footer class="footer label">
+      <span>© {new Date().getFullYear()} Yellow Frosted Willow</span>
+      <a class="footer__social" href={instagramUrl}>
+        Instagram <span class="footer__handle">@yellowfrostedwillow</span>
+      </a>
+    </footer>
   </body>
 </html>
