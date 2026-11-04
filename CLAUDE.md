@@ -5,6 +5,14 @@
 Never push directly to `master`: every merge deploys the live site. Make changes on a branch,
 open a pull request, and let Stewart review and merge it.
 
+## Dependabot auto-merge
+
+Dependabot minor/patch PRs merge themselves once CI's `check` job passes (the `automerge` job in
+`.github/workflows/ci.yml`), then start the deploy. Majors wait for Stewart. Every deploy ends with
+a `smoke` job that checks the live site and opens an issue if it fails. A failed-smoke issue
+means the latest deploy broke the site: find the cause, and if it was a Dependabot update, propose
+reverting its merge commit.
+
 ## After a PR merges: run the content smoke checks
 
 Every merge to `master` deploys the live site (`.github/workflows/deploy.yml`, GitHub Pages).

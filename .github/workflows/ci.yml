@@ -43,3 +43,29 @@ jobs:
             --root-dir ${{ github.workspace }}/dist
             'dist/**/*.html'
           fail: true
+
+  # Dependabot minor/patch updates merge themselves once `check` passes; majors wait for Stewart.
+  # No code from the PR runs here, so the write token never touches untrusted code.
+  automerge:
+    needs: check
+    if: github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - id: meta
+        uses: dependabot/fetch-metadata@v3
+
+      - name: Merge and deploy
+        if: contains(fromJSON('["version-update:semver-minor","version-update:semver-patch"]'), steps.meta.outputs.update-type)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Only merge the exact commit that just passed `check`.
+          gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --merge --match-head-commit "$SHA"
+          # A merge made with the workflow token doesn't fire the push trigger, so start the deploy here.
+          gh workflow run deploy.yml --repo "$GITHUB_REPOSITORY" --ref master
