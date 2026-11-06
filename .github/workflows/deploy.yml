@@ -30,3 +30,71 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Quick check that the live site really updated and still looks right. On failure it opens an
+  # issue, so Stewart hears about it even when the deploy was started by the Dependabot auto-merge.
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check the live site
+        env:
+          SITE: https://www.yellowfrostedwillow.com
+          TITLE: "Yellow Frosted Willow: The Anna May Wong Musical"
+          # Each line must appear on the homepage (as text, or in its HTML).
+          TEXTS: |
+            黃柳霜
+            The story
+            Featuring
+            Music director
+            Listen
+          PAGES: ""
+        run: |
+          not_before=$(( $(date -u +%s) - 600 ))
+          check() {
+            code=$(curl -sS -L -m 30 -o page.html -D headers.txt -w '%{http_code}' "$SITE/") || { echo "Couldn't load $SITE"; return 1; }
+            [ "$code" = 200 ] || { echo "Homepage returned HTTP $code"; return 1; }
+            lm=$(grep -i '^last-modified:' headers.txt | tail -1 | cut -d' ' -f2- | tr -d '\r')
+            if [ -z "$lm" ] || [ "$(date -u -d "$lm" +%s)" -lt "$not_before" ]; then
+              echo "Live homepage is older than this deploy (Last-Modified: ${lm:-none})"; return 1
+            fi
+            grep -qF "<title>$TITLE</title>" page.html || { echo "Title is missing or changed"; return 1; }
+            text=$(sed 's/<[^>]*>/ /g' page.html | tr -s '[:space:]' ' ')
+            while IFS= read -r s; do
+              [ -n "$s" ] || continue
+              grep -qF -- "$s" page.html || grep -qF -- "$s" <<<"$text" || { echo "Missing on homepage: $s"; return 1; }
+            done <<<"$TEXTS"
+            for p in $PAGES; do
+              c=$(curl -sS -L -m 30 -o /dev/null -w '%{http_code}' "$SITE$p")
+              [ "$c" = 200 ] || { echo "Page $p returned HTTP $c"; return 1; }
+            done
+            imgs=$(grep -o '<img [^>]*src="/[^"]*"' page.html | sed 's/.*src="//; s/"$//')
+            [ -n "$imgs" ] || { echo "No images found on the homepage"; return 1; }
+            for i in $imgs; do
+              r=$(curl -sS -m 30 -o /dev/null -w '%{http_code} %{content_type}' "$SITE$i")
+              case "$r" in "200 image/"*) ;; *) echo "Image $i returned $r"; return 1 ;; esac
+            done
+            echo "Live site OK: title, homepage text, $(echo $PAGES | wc -w) other pages and $(echo "$imgs" | wc -l) images"
+          }
+          # GitHub Pages can take a minute or two to serve the new build.
+          for attempt in $(seq 1 15); do
+            if out=$(check); then echo "$out"; exit 0; fi
+            echo "Attempt $attempt: $out"; sleep 20
+          done
+          echo "::error::$out"; echo "$out" > reason.txt; exit 1
+
+      - name: Open an issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          reason=$(cat reason.txt 2>/dev/null || echo "see the run log")
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Live site check failed after deploy of ${GITHUB_SHA::7}" \
+            --body "The post-deploy check of https://www.yellowfrostedwillow.com failed: $reason
+
+          Run: $RUN_URL
+          If a Dependabot update caused it, revert its merge commit to redeploy the previous version."
