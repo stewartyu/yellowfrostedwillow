@@ -12,11 +12,11 @@
     "node": ">=22.23.4"
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "astro": "^7.4.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "sass": "^1.105.1",
+    "sass": "^1.107.1",
     "typescript": "^6.0.3"
   }
 }
