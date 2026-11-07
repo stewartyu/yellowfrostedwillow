@@ -269,24 +269,11 @@ img {
     line-height: 1;
 }
 
-.date-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 16px;
-
-    margin: 10px 0;
-
-    .date {
-        margin: 0;
-    }
-}
-
 .venue-logo {
-    flex: none;
+    display: block;
     width: 160px;
     height: auto;
+    margin: 14px 0 4px;
 }
 
 @media (min-width: $wide) {
