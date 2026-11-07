@@ -272,6 +272,7 @@ img {
 .date-row {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
 
@@ -284,13 +285,13 @@ img {
 
 .venue-logo {
     flex: none;
-    width: 108px;
+    width: 160px;
     height: auto;
 }
 
 @media (min-width: $wide) {
     .venue-logo {
-        width: 124px;
+        width: 200px;
     }
 }
 
